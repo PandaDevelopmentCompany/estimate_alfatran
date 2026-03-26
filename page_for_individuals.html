@@ -79,11 +79,11 @@
 
   /* Стили для сетки */
   .grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-    gap: 20px;
-    margin-top: 30px;
-  }
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  margin-top: 30px;
+}
 
   .grid-item {
     background: white;
@@ -135,6 +135,148 @@
       padding: 20px;
     }
   }
+
+
+
+
+  .grid-item h3 {
+  font-size: 1.1rem;
+  line-height: 1.3;
+  word-break: break-word;
+}
+
+.grid-item p {
+  font-size: 0.95rem;
+  line-height: 1.4;
+  word-break: break-word;
+}
+
+/* чтобы карточки были одинаковые */
+.grid-item {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 140px;
+}
+
+/* уменьшим заголовки на мобилке */
+@media (max-width: 768px) {
+  .grid-item h3 {
+    font-size: 1rem;
+  }
+}
+
+
+
+
+
+
+
+
+
+/* Блок с цифрами */
+.stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  margin-top: 30px;
+  text-align: center;
+}
+
+.stat-item {
+  background: white;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.stat-number {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #ff0000;
+}
+
+.stat-text {
+  font-size: 0.95rem;
+  margin-top: 5px;
+}
+
+/* адаптив */
+@media (max-width: 768px) {
+  .stats {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* ===== АДАПТИВНОСТЬ ДЛЯ МОБИЛОК ===== */
+
+/* Глобально для всех: чтобы padding/margin не ломали верстку */
+* {
+  box-sizing: border-box;
+}
+
+/* Малые экраны: 320px - 480px */
+@media (max-width: 480px) {
+  body { overflow-x: hidden; }
+
+  h1 { font-size: 1.6rem; line-height: 1.2; }
+  h2 { font-size: 1.3rem; line-height: 1.3; }
+  h3 { font-size: 0.95rem; line-height: 1.2; }
+
+  .section { padding: 25px 10px; margin: 10px 5px; }
+  .cta-btn { width: 100%; font-size: 0.95rem; padding: 12px; }
+
+  .grid { 
+    grid-template-columns: 1fr; 
+    gap: 15px;
+  }
+  .grid-item { 
+    padding: 15px; 
+    min-height: auto; 
+  }
+
+  .stats {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+  .stat-item { padding: 15px; }
+
+  .list li { font-size: 0.85rem; margin-bottom: 10px; }
+  
+  p { font-size: 0.9rem; }
+}
+
+/* Средние экраны: 481px - 768px */
+@media (max-width: 768px) {
+  h1 { font-size: 1.9rem; }
+  h2 { font-size: 1.5rem; }
+  h3 { font-size: 1rem; }
+
+  .section { padding: 30px 15px; }
+  .cta-btn { width: 100%; font-size: 1rem; padding: 15px; }
+
+  .grid { grid-template-columns: 1fr; gap: 18px; }
+  .grid-item { padding: 18px; }
+
+  .stats { grid-template-columns: 1fr 1fr; gap: 15px; }
+  .stat-item { padding: 18px; }
+}
+
+/* Средние экраны: 769px - 1024px */
+@media (max-width: 1024px) {
+  .grid { grid-template-columns: repeat(2, 1fr); gap: 20px; }
+  .stats { grid-template-columns: repeat(2, 1fr); gap: 20px; }
+}
+
+/* Крупные экраны: > 1200px */
+@media (min-width: 1200px) {
+  .section { padding: 60px 40px; }
+  h1 { font-size: 3rem; }
+  h2 { font-size: 2.5rem; }
+  h3 { font-size: 1.5rem; }
+  .grid { grid-template-columns: repeat(3, 1fr); gap: 20px; }
+  .stats { grid-template-columns: repeat(4, 1fr); gap: 20px; }
+}
 </style>
 </head>
 <body>
@@ -144,7 +286,7 @@
   <div class="container">
     <h1>Профессиональные переводы для частных лиц на любые языки</h1>
     <h2>Перевод документов для виз, учебы, работы и личных задач. Более 15 лет опыта, точные сроки и гарантия качества.</h2>
-    <a href="#" class="cta-btn">Получить консультацию</a>
+    <a href="#" class="cta-btn">Рассчитать стоимость перевода</a>
   </div>
   <!-- Пояснение -->
   <p style="font-size: 12px; text-align: center;">Заголовок четко объясняет услугу и целевую аудиторию. Подзаголовок акцентирует внимание на преимуществах.</p>
@@ -153,50 +295,110 @@
 <!-- Преимущества работы с нами -->
 <section class="section gray">
   <div class="container">
-    <h2>Почему выбирают «Альфатран»?</h2>
+    <h2>Почему нам доверяют переводы</h2>
     <ul class="list">
-      <li>Более 15 лет опыта — работаем с 2009 года на рынке переводов в России и за рубежом.</li>
-      <li>Любые документы и тематики — от личных документов до юридических, технических и медицинских текстов.</li>
-      <li>Гарантия качества — многоступенчатая проверка перевода и работа профильных специалистов.</li>
-      <li>Соблюдение сроков — выполняем заказы точно в оговоренные сроки, возможны срочные переводы.</li>
-      <li>Полная конфиденциальность — ваши документы защищены на всех этапах работы.</li>
-      <li>Индивидуальный подход — подбираем решение под вашу задачу и бюджет.</li>
+      <li><strong>Ваши документы примут с первого раза</strong> — учитываем требования консульств, вузов и госорганов.</li>
+      <li><strong>Без ошибок и переделок</strong> — каждый перевод проходит многоступенчатую проверку.</li>
+      <li><strong>Соблюдаем сроки</strong> — вы получаете перевод вовремя, даже при срочных заказах.</li>
+      <li><strong>Работаем с любыми документами</strong> — от личных до юридических и технических.</li>
+      <li><strong>Конфиденциальность гарантирована</strong> — ваши данные защищены на всех этапах.</li>
+      <li><strong>Удобно и без лишних действий</strong> — можно отправить документы онлайн и получить готовый перевод на почту.</li>
     </ul>
-    <p style="font-size: 12px; text-align: center;">Эти преимущества подчеркивают опыт и надежность компании, ориентированную на удобство частных клиентов.</p>
   </div>
 </section>
+
 
 <!-- Услуги для физических лиц -->
 <section class="section yellow">
   <div class="container">
-    <h2>Услуги перевода для частных клиентов</h2>
+    <h2>Услуги для частных клиентов</h2>
     <div class="grid">
+
       <div class="grid-item">
         <h3>Перевод личных документов</h3>
-        <p>Паспорта, свидетельства, дипломы, справки, доверенности и другие документы.</p>
+        <p>Паспорта, свидетельства, дипломы, справки — переводы, которые принимают с первого раза.</p>
       </div>
+
       <div class="grid-item">
-        <h3>Перевод для виз и эмиграции</h3>
-        <p>Подготовка документов для консульств: перевод, нотариальное заверение, апостиль и легализация.</p>
+        <h3>Для визы и переезда</h3>
+        <p>Полный пакет: перевод, нотариальное заверение, апостиль и легализация.</p>
       </div>
+
       <div class="grid-item">
-        <h3>Перевод для учебы и работы</h3>
-        <p>Аттестаты, дипломы, резюме, рекомендации и документы для поступления или трудоустройства.</p>
+        <h3>Учеба и работа за рубежом</h3>
+        <p>Дипломы, резюме, рекомендации — подготовим документы для поступления и трудоустройства.</p>
       </div>
+
       <div class="grid-item">
-        <h3>Профессиональные переводы</h3>
-        <p>Юридические, технические, медицинские, IT и другие специализированные тексты.</p>
+        <h3>Юридические переводы</h3>
+        <p>Договоры, доверенности, справки, судебные документы и деловая переписка.</p>
       </div>
+
       <div class="grid-item">
-        <h3>Нотариальное заверение</h3>
-        <p>Оформление перевода с заверением, апостилированием и консульской легализацией.</p>
+        <h3>Технические и IT тексты</h3>
+        <p>Инструкции, спецификации, документация — с точной терминологией.</p>
       </div>
+
       <div class="grid-item">
-        <h3>Дополнительные услуги</h3>
-        <p>Редактирование, корректура, локализация сайтов, озвучка и работа с текстами.</p>
+        <h3>Медицинские документы</h3>
+        <p>Анализы, выписки, заключения — аккуратно и с соблюдением терминологии.</p>
+      </div>
+
+      <div class="grid-item">
+        <h3>Устный перевод</h3>
+        <p>Переговоры, встречи, консультации — онлайн или с выездом.</p>
+      </div>
+
+      <div class="grid-item">
+        <h3>Проверка и редактирование</h3>
+        <p>Исправим ошибки, проверим перевод и улучшим качество текста.</p>
+      </div>
+
+      <div class="grid-item">
+        <h3>Локализация и тексты</h3>
+        <p>Сайты, видео, субтитры, озвучка и адаптация под нужную аудиторию.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section class="section light-blue">
+  <div class="container">
+    <h2>О компании «Альфатран»</h2>
+    
+    <p style="max-width: 800px; text-align: center;">
+      «Альфатран» — это профессиональное бюро переводов с более чем 15-летним опытом работы 
+      в России и за рубежом. Мы предоставляем полный спектр языковых услуг для частных и корпоративных клиентов.
+    </p>
+
+    <p style="max-width: 800px; text-align: center;">
+      Работаем с любыми тематиками: юридические, технические, медицинские, IT, экономика, маркетинг 
+      и научные тексты. Переводим на все мировые языки.
+    </p>
+
+    <!-- Цифры -->
+    <div class="stats">
+      <div class="stat-item">
+        <div class="stat-number">1000+</div>
+        <div class="stat-text">клиентов</div>
+      </div>
+
+      <div class="stat-item">
+        <div class="stat-number">30+</div>
+        <div class="stat-text">специалистов</div>
+      </div>
+
+      <div class="stat-item">
+        <div class="stat-number">150 000+</div>
+        <div class="stat-text">страниц в год</div>
+      </div>
+
+      <div class="stat-item">
+        <div class="stat-number">195 000+</div>
+        <div class="stat-text">переведено документов</div>
       </div>
     </div>
-    <p style="font-size: 12px; text-align: center;">Список услуг дает чёткое представление о том, что именно можно заказать, с фокусом на частных клиентов.</p>
   </div>
 </section>
 
